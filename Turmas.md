@@ -8,7 +8,7 @@ Este documento descreve o projecto da cadeira de Sistemas Distribuídos 2021/202
  
 O objetivo do projeto de Sistemas Distribuídos (SD) é desenvolver o sistema **Turmas**, um serviço de inscrição em turmas de uma dada unidade curricular. O serviço é fornecido por servidores através de chamadas a procedimentos remotos. Para simplificar o projecto, assume-se que existe uma única turma.
 
-O serviço pode ser acedido por três tipos de clientes: i) os *docentes*, que podem abrir e fechar inscrições, assim como consultar e alterar o estado das inscrições; ii) os *alunos* que podem fazer consultas e inscrições; iii) *administradores* que mantêm o serviço em funcionamento.
+O serviço pode ser acedido por três tipos de clientes: i) os *docentes*, que podem abrir e fechar inscrições, assim como consultar e alterar o estado das inscrições; ii) os *alunos* que podem fazer consultas e inscrições; iii) os *administradores* que mantêm o serviço em funcionamento.
 
 O sistema será concretizado através de um conjunto de serviços gRPC implementados na plataforma Java.
 
@@ -39,15 +39,13 @@ Para além disso, nesta fase os clientes não sabem à partida os endereços des
 2.3 Fase 3
 -------------------
 
-Na última fase, o serviço é fornecido por dois servidores que partilham estado usando um modelo de coerência eventual, com capacidade de integrarem operações concorrentes. As operações de inscrição podem ser feitas em qualquer um dos servidores, que propagam em diferido as alterações para o outro servidor. Sempre que possível, operações executadas de forma concorrente são integradas num estado comum. Neste modelo algumas operações podem vir a ser posteriormente canceladas de forma automática pelo sistema, por exemplo se dois alunos reservam a última vaga numa turma, de forma concorrente, usando servidores diferentes.
+Na última fase, o serviço é fornecido por dois servidores que partilham estado usando um modelo de coerência eventual, com capacidade de integrarem operações concorrentes. As operações de inscrição podem ser feitas em qualquer um dos servidores, que propagam em diferido ("background") as alterações para o outro servidor. Sempre que possível, operações executadas de forma concorrente são integradas num estado comum. Neste modelo algumas operações podem vir a ser posteriormente canceladas de forma automática pelo sistema. Por exemplo, se dois alunos reservam a última vaga numa turma, de forma concorrente, usando servidores diferentes.
 
 Mais concretamente, considere-se uma turma com capacidade para 2 alunos e que inicialmente está vazia. Considere dois alunos que contactam concorrentemente dois servidores distintos para fazer uma inscrição:
 
 	- O aluno A faz a sua inscrição no servidor S1
  
 	- O aluno B faz a sua inscrição no servidor S2
- 
-	
  
 Temporariamente, os servidores vão ter informação incoerente: cada um deles tem apenas uma inscrição nesta turma, mas de um aluno diferente. Após a propagação diferida das actualizações entre os servidores, ambos os servidores devem ficar com o mesmo estado, aparecendo ambos os alunos na lista de inscritos, em ambas as réplicas.
 
@@ -85,26 +83,25 @@ A turma possui o seguinte estado associado
 - Lista de alunos cuja inscrição foi revogada (isto pode acontecer na fase 3, devido ao modelo de coerência eventual)
 
  
-Cada servidor exporta múltiplas interfaces. Cada interface está pensada para expor data para entidades distintas. Como foi referido, no projecto considera-se que existem três tipos distintos de clientes, nomeadamente os docentes, os alunos e os administradores. Para além disso, os servidores exportam uma quarta interface pensada para ser invocada por outros servidores (no caso em que os servidores estão replicados, e necessitam de comunicar entre si).
+Cada servidor exporta múltiplas interfaces. Cada interface está pensada para expor dados para entidades distintas. Como foi referido, no projecto considera-se que existem três tipos distintos de clientes, nomeadamente os docentes, os alunos e os administradores. Para além disso, os servidores exportam uma quarta interface pensada para ser invocada por outros servidores (no caso em que os servidores estão replicados, e necessitam de comunicar entre si).
 
 3.1 Interface do docente
 -------------------
 
 
-O docente pode invocar as seguintes funções
+O docente pode invocar as seguintes funções:
 - `abrir_inscricoes` -- recebe a lotação da turma e abre as inscrições nesta
 - `fechar_inscricoes` -- fecha as inscrições na turma
-- `listar` -- lista o estado das inscrições, apresentado a lista de alunos inscritos, a lista de inscrições canceladas e a capacidade total da turma
+- `listar` -- lista o estado das inscrições, apresentando a lista de alunos inscritos, a lista de inscrições canceladas e a capacidade total da turma
 - `cancelar_inscricao` -- recebe o identificador do *aluno*, removendo a inscrição de um dado *aluno* e colocando-o na lista de inscrições canceladas da turma
 
  
 3.2 Interface do aluno
 -------------------
 
-
 O aluno pode invocar as seguintes funções
  
-- `listar` -- lista o estado das inscrições, apresentado a lista de alunos inscritos, a lista de inscrições canceladas e a capacidade total da turma
+- `listar` -- lista o estado das inscrições, apresentando a lista de alunos inscritos, a lista de inscrições canceladas e a capacidade total da turma
 - `inscrever` -- recebe o nome e o identificador do *aluno*, inscrevendo o *aluno* 
 
 3.3 Interface do administrador
@@ -113,17 +110,17 @@ O aluno pode invocar as seguintes funções
 - `ativar` -- coloca o servidor em modo **ATIVO** (este é o comportamento por omissão), em que responde a todos os pedidos
 - `desativar` -- coloca o servidor em modo **INATIVO**. Neste modo o servidor responde com o erro "DISABLED" a todos os pedidos do docentes e dos alunos
 - `dump` -- reporta o estado do servidor
-- `cancelar_gossip` -- termina o processo de propagação diferida entre réplica (só para a fase 3)
-- `ativar_gossip` -- inicia o processo de propagação diferida entre réplica (só para a fase 3)
-- `gossip` -- força uma réplica a fazer uma propagação diferida para a outra réplica (só para a fase 3)
+- `cancelar_gossip` -- termina o processo de propagação diferida entre réplicas (só para a fase 3)
+- `ativar_gossip` -- inicia o processo de propagação diferida entre réplicas (só para a fase 3)
+- `gossip` -- força uma réplica a fazer uma propagação diferida para a(s) outra(s) réplica(s) (só para a fase 3)
 
-Todos os comandos do administrador devem receber como argumentos o endereço e o porto do servidor em que a operação deve ser realizada
+Todos os comandos do administrador devem receber como argumentos o endereço e o porto do servidor em que a operação deve ser realizada.
 
 
 3.4 Interface entre servidores
 -------------------
 
--`propaga_estado` -- um servidor envia o seu estado a outra réplica
+-`propaga_estado` -- um servidor envia o seu estado a outra réplica.
 
 4 Servidor de nomes
 ------------------------
@@ -166,7 +163,7 @@ Se por outro lado o comando não for bem sucedido devem imprimir uma linha conte
  
  Para cada interface exportada pelos servidores (incluindo o servidor de nomes), será gerada uma biblioteca que deve ser usada pelos processos que invoquem chamadas a procedimentos remotos nessa interface. Por exemplo, o processo *docente* deve usar a biblioteca cliente do servidor de nomes (nas fases 2 e 3) e a biblioteca cliente da interface *docente* do servidor de *turmas*.
 
-Todos os processos devem poder ser lançados com uma opção "-debug". Se esta opção for seleccionada, o processo deve imprimir para o "stderr" mensagens que descrveam as acções que executa. O formato destas mesnagens é livre mas deve ajudar a depurar o código.
+Todos os processos devem poder ser lançados com uma opção "-debug". Se esta opção for seleccionada, o processo deve imprimir para o "stderr" mensagens que descrevam as acções que executa. O formato destas mensagens é livre mas deve ajudar a depurar o código.
 
 
 5.1 Servidores primário/secundário
@@ -199,8 +196,6 @@ O cliente docente deve ser lançado sem parâmetros, por exemplo:
 
 `$ docente`
  
-O nome do docente deverá ter entre 3 a 30 caracteres.
-
 Exemplo de uma interação com o cliente docente:
 
 $ docente
@@ -225,7 +220,6 @@ OK
  
 ```
 
- 
  
 5.4 Cliente *aluno*
 -----------
@@ -328,13 +322,10 @@ Se for um dos clientes, pode decidir parar com o erro recebido ou fazer novas te
 --------
 
  
- 
 Em resumo, na primeira parte do trabalho é necessário implementar:  
  
 o servidor, *turmas*;  
- 
-o cliente com testes automáticos, *testes*;  
- 
+  
 o cliente docente, *docentes*;  
  
 o cliente alunos *aluno*, e
@@ -385,7 +376,7 @@ O [Git](https://git-scm.com/doc) é um sistema de controlo de versões do códig
 Toda a partilha de código para trabalho deve ser feita através do [GitHub](https://github.com). 
  
  
-O repositório de cada grupo está disponível em: https://github.com/tecnico-distsys/GXX-StaySafe/ (substituir `GXX` pelo identificador de grupo).
+O repositório de cada grupo está disponível em: https://github.com/tecnico-distsys/GXX-Turmas/ (substituir `GXX` pelo identificador de grupo).
 
  
 A atualização do repositório deve ser feita com regularidade, correspondendo à distribuição de trabalho entre os membros da equipa e às várias etapas de desenvolvimento. 
@@ -410,7 +401,7 @@ Cada grupo tem que marcar o código que representa cada entrega a realizar com u
 ---------------
 
 
-A data limite de entrega é: **A DEFINIR**.
+As datas limites de entrega estão definidas no site dos laboratórios: (https://tecnico-distsys.github.io)
 
 
 ### Qualidade do código
@@ -435,12 +426,10 @@ A avaliação da qualidade engloba os seguintes aspetos:
 -----------------------------
 
  
- 
 As instruções de instalação e configuração de todo o sistema, de modo a que este possa ser colocado em funcionamento, devem ser colocadas no documento `README.md`.
  
 Este documento tem de estar localizado na raiz do projeto e tem que ser escrito em formato [*MarkDown*](https://guides.github.com/features/mastering-markdown/).
 
- 
  
 Cada grupo deve preparar também um *guião de demonstração*, com casos de utilização, passo a passo, que demonstram as funcionalidades do trabalho.
  
@@ -449,12 +438,10 @@ O guião e ficheiros de dados necessários devem ser incluído na pasta `demo/` 
 O documento principal deve chamar-se `demo/README.md` e os ficheiros com dados de teste devem ter a extensão `txt`.
 
 
-
 8.7 Discussão
  
 -------------
 
- 
  
 As notas das várias partes são indicativas e sujeitas a confirmação na discussão final, na qual todo o trabalho desenvolvido durante o semestre será tido em conta. 
  
@@ -463,17 +450,14 @@ As notas a atribuir serão individuais, por isso é importante que a divisão de
 Todas as discussões e revisões de nota do trabalho devem contar com a participação obrigatória de todos os membros do grupo.
 
 
-
 8.8 Atualizações
  
 ----------------
 
  
- 
 Para acompanhar as novidades sobre o projeto, consultar regularmente a [página Web dos laboratórios](https://tecnico-distsys.github.io).  
  
 Caso venham a surgir correções ou clarificações neste documento, podem ser consultadas no histórico (_History_).
-
 
 
 **Bom trabalho!**
