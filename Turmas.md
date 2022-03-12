@@ -316,9 +316,9 @@ Se for um servidor, o programa deve responder ao cliente com um código de erro 
  
 Se for um dos clientes, pode decidir parar com o erro recebido ou fazer novas tentativas de pedido.
 
+
 7 Resumo
- 
---------
+------------
 
  
 Em resumo, na primeira parte do trabalho é necessário implementar:  
@@ -336,8 +336,7 @@ Todos os clientes oferecem uma interface-utilizador baseada na linha de comandos
 
 
 8 Avaliação
- 
-===========
+------------
 
 8.1 Fotos
  
