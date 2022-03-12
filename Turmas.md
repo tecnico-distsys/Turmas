@@ -146,14 +146,12 @@ Todos os processos cliente deverão mostrar o símbolo *>* sempre que se encontr
 Se o comando introduzido for bem sucedido devem imprimir uma linha contendo a string `OK` e caso exista algum output que deva ser produzido pelo comando, deve ser apresentado a seguir, como por exemplo:
 
 ```
- 
 > listar
 OK
-	Inscritos:
-  - aluno0012 Joaquim Freire
-	Cancelados:
-	VAZIO
- 
+Inscritos:
+- aluno0012 Joaquim Freire
+Cancelados:
+VAZIO
 ```
 
  
@@ -163,7 +161,7 @@ Se por outro lado o comando não for bem sucedido devem imprimir uma linha conte
  
  Para cada interface exportada pelos servidores (incluindo o servidor de nomes), será gerada uma biblioteca que deve ser usada pelos processos que invoquem chamadas a procedimentos remotos nessa interface. Por exemplo, o processo *docente* deve usar a biblioteca cliente do servidor de nomes (nas fases 2 e 3) e a biblioteca cliente da interface *docente* do servidor de *turmas*.
 
-Todos os processos devem poder ser lançados com uma opção "-debug". Se esta opção for seleccionada, o processo deve imprimir para o "stderr" mensagens que descrevam as acções que executa. O formato destas mensagens é livre mas deve ajudar a depurar o código.
+Todos os processos devem poder ser lançados com uma opção "-debug". Se esta opção for seleccionada, o processo deve imprimir para o "stderr" mensagens que descrevam as acções que executa. O formato destas mensagens é livre mas deve ajudar a depurar o código. Deve também ser pensado para ajudar a perceber o fluxo das execuções durante a discussão final.
 
 
 5.1 Servidores primário/secundário
@@ -205,18 +203,18 @@ OK
 OK
 > listar
 OK
-	Inscritos:
-  - aluno0012 Joaquim Freire
-	Cancelados:
-	VAZIO
+Inscritos:
+- aluno0012 Joaquim Freire
+Cancelados:
+VAZIO
 > cancelar_inscricao aluno0012
 OK
 > listar
 OK
-	Inscritos:
-	VAZIO
-	Cancelados:
-  - aluno0012 Joaquim Freire
+Inscritos:
+VAZIO
+Cancelados:
+- aluno0012 Joaquim Freire
 ```
 
  
@@ -235,10 +233,10 @@ O nome do aluno deverá ter entre 3 e 30 caracteres.
 ```$ aluno aluno0012 Joaquim Freire
 > listar
 OK
-	Inscritos:
-    VAZIO 
-	Cancelados:
-	VAZIO
+Inscritos:
+VAZIO 
+Cancelados:
+VAZIO
 > inscrever
 OK
  
@@ -257,12 +255,12 @@ $ admin_turmas
 OK
 > dump P
 OK
-	Inscritos:
-    VAZIO 
-	Cancelados:
-	VAZIO
+Inscritos:
+VAZIO 
+Cancelados:
+VAZIO
 > activar P
-	OK
+OK
 > desactivar S
 OK
 ```
@@ -321,15 +319,15 @@ Se for um dos clientes, pode decidir parar com o erro recebido ou fazer novas te
 ------------
 
  
-Em resumo, na primeira parte do trabalho é necessário implementar:  
+Em resumo, é necessário implementar:  
  
 o servidor, *turmas*;  
   
-o cliente docente, *docentes*;  
+o cliente docente, *docente*;  
  
-o cliente alunos *aluno*, e
+o cliente aluno, *aluno*, e
  
-o cliente para administrador *turmas_admin*.
+o cliente administrador, *turmas_admin*.
 
  
 Todos os clientes oferecem uma interface-utilizador baseada na linha de comandos.
@@ -350,17 +348,13 @@ Cada membro da equipa tem que atualizar o Fénix com uma foto, com qualidade, ti
  
 --------------------------
  
-O identificador do grupo tem o formato `GXX`, onde `XX` representa o número do grupo de SD atribuído pelo Fénix.  
- 
-Por exemplo, o grupo A22 corresponde ao grupo 22 sediado no campus Alameda; já o grupo T07 corresponde ao grupo 7 sediado no Taguspark.
+O identificador do grupo tem o formato `GXX`, onde `G` representa o campus e `XX` representa o número do grupo de SD atribuído pelo Fénix. Por exemplo, o grupo A22 corresponde ao grupo 22 sediado no campus Alameda; já o grupo T07 corresponde ao grupo 7 sediado no Taguspark.
  
 O grupo deve identificar-se no documento `README.md` na pasta raíz do projeto.
-
  
 Em todos os ficheiros de configuração `pom.xml` e de código-fonte, devem substituir `GXX` pelo identificador de grupo.  
  
 Esta alteração é importante para a gestão de dependências, para garantir que os programas de cada grupo utilizam sempre os módulos desenvolvidos pelo próprio grupo.
-
 
 
 8.3 Colaboração
