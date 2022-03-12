@@ -64,7 +64,7 @@ Nesta fase, uma das réplicas continua a ser considerada primária. As operaçõ
  
 Os alunos poderão alterar as estruturas de dados mantidas pelo servidor, assim como a informação trocada entre servidores, para aplicar as políticas de reconciliação que considerem mais indicadas.
 
-Os alunos poderão também desenvolver mecanismos que permitam acrescentar uma terceira réplica já com o sistema em funcionamento.
+Os alunos poderão também desenvolver mecanismos extra que permitam acrescentar uma terceira réplica já com o sistema em funcionamento. Reservamos 2 valores adicionais nesta fase para os alunos que conseguirem desenvolver corretamente um mecanismo deste tipo (por outras palavras, os alunos podem ter uma nota superior a 20 valores na fase 3, o que poderá compensar uma nota mais baixa noutra fase).
  
 3 Interfaces do serviço 
 ------------------------
@@ -198,7 +198,7 @@ O cliente docente deve ser lançado sem parâmetros, por exemplo:
  
 Exemplo de uma interação com o cliente docente:
 
-$ docente
+```$ docente
 > abrir_inscricoes 50
 OK
 > fechar inscricoes
@@ -217,7 +217,6 @@ OK
 	VAZIO
 	Cancelados:
   - aluno0012 Joaquim Freire
- 
 ```
 
  
@@ -232,10 +231,8 @@ O identificador do aluno deverá ser do tipo `alunoXXXX` em que `XXXX` represent
  
 O nome do aluno deverá ter entre 3 e 30 caracteres.
 
- 
-```
- 
-$ aluno aluno0012 Joaquim Freire
+
+```$ aluno aluno0012 Joaquim Freire
 > listar
 OK
 	Inscritos:
@@ -254,6 +251,7 @@ OK
 
 O cliente administrador não necessita de qualquer tipo de argumentos, sendo apenas lançado da seguinte forma:
 
+```
 $ admin_turmas
 >desactivar P
 OK
@@ -267,6 +265,7 @@ OK
 	OK
 > desactivar S
 OK
+```
 
 6 Tecnologia
 ------------
@@ -354,8 +353,7 @@ Cada membro da equipa tem que atualizar o Fénix com uma foto, com qualidade, ti
  
 O identificador do grupo tem o formato `GXX`, onde `XX` representa o número do grupo de SD atribuído pelo Fénix.  
  
-<!--Por exemplo, o grupo A22 corresponde ao grupo 22 sediado no campus Alameda; já o grupo T07 corresponde ao grupo 7 sediado no Taguspark.-->
-
+Por exemplo, o grupo A22 corresponde ao grupo 22 sediado no campus Alameda; já o grupo T07 corresponde ao grupo 7 sediado no Taguspark.
  
 O grupo deve identificar-se no documento `README.md` na pasta raíz do projeto.
 
