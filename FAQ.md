@@ -40,3 +40,11 @@ Seguindo o seguinte exemplo: um professor abre uma turma com 20 alunos, fecha a 
 
 - Caso estejam menos de 10 alunos inscritos a capacidade passa a 10 e abre.
 - Caso estejam 10 alunos inscritos ou mais retorna FULL_CLASS ao professor.
+
+## Devo implementar a flag -debug em todos os processos?
+
+Nos processos servidor sim, a flag -debug tem de estar obrigatoriamente implementada. Nos processo cliente, vai depender da da vossa implementação: se o vosso cliente executar várias operações importantes, então sim, tem de estar implementado. Se os vossos processos cliente forem apenas uma interface simples, sem grande lógica, então não será preciso. Porém, se se sentirem mais confortáveis em implementar em ambos os processos, então força.
+
+## O que deve aparecer na consola quando a flag -debug está ativa?
+
+Devem imprimir informação que permita perceber exatamente o que está a acontecer, sendo ao vosso critério aquilo que acham que devem imprimir. Notem que o -debug serve para termos uma visão mais específica de todo o processo.
