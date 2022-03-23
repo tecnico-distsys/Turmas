@@ -26,6 +26,6 @@ As situações com índice menor tomam sempre precedência sobre as restantes, c
 Para permitir testagem automática, **tem** de seguir [este formato](https://discord.com/channels/949644248045719622/955528908885868555/955529219629273119)
 
 ## O que acontece se um professor reabrir com capacidade inferior?
-Seguindo o seguinte exemplo: um professor abre uma turma com 20 alunos, fecha a turma e reabre com 10.
-Caso estejam menos de 10 alunos inscritos a capacidade passa a 10 e abre.
+Seguindo o seguinte exemplo: um professor abre uma turma com 20 alunos, fecha a turma e reabre com 10. 
+Caso estejam menos de 10 alunos inscritos a capacidade passa a 10 e abre. 
 Caso estejam mais de 10 alunos inscritos retorna FULL_CLASS ao professor.
