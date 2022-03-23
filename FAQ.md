@@ -27,5 +27,5 @@ Para permitir testagem automática, **tem** de seguir [este formato](https://dis
 
 ## O que acontece se um professor reabrir com capacidade inferior?
 Seguindo o seguinte exemplo: um professor abre uma turma com 20 alunos, fecha a turma e reabre com 10.
-1. Caso estejam menos de 10 alunos inscritos a capacidade passa a 10 e abre.
-2. Caso estejam mais de 10 alunos inscritos retorna FULL_CLASS ao professor.
+ - Caso estejam menos de 10 alunos inscritos a capacidade passa a 10 e abre.
+ - Caso estejam mais de 10 alunos inscritos retorna FULL_CLASS ao professor.
