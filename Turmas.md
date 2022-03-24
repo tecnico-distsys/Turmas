@@ -143,9 +143,7 @@ O aluno pode invocar as seguintes funções
 - `activateGossip` -- inicia o processo de propagação diferida entre réplicas (só para a fase 3)
 - `gossip` -- força uma réplica a fazer uma propagação diferida para a(s) outra(s) réplica(s) (só para a fase 3)
 
-Todos os comandos do administrador devem receber como argumentos o endereço e o porto do servidor em que a operação deve
-ser realizada.
-
+Todos os comandos do administrador **podem** receber como argumento `P|S` indicando se o servidor alvo dessa operação é o primário ou o secundário, se tal argumento não for indicado, a operação deve ser realizada no primário.
 
 3.4 Interface entre servidores
 -------------------
@@ -193,6 +191,8 @@ ClassState{
 		}],
 	discarded=[]
 }
+
+> exit
 ```
 
 O formato de impressão do estado da turma e as mensagens associadas a cada código de resposta encontram-se definidas na
@@ -274,6 +274,8 @@ ClassState{
 			Name='Joaquim Freire'
 		}]
 }
+
+> exit
 ```
 
 5.4 Cliente *aluno*
@@ -296,6 +298,8 @@ ClassState{
 	enrolled=[],
 	discarded=[]
 }
+
+> exit
 ```
 
 5.5 Cliente *administrador*
@@ -323,6 +327,8 @@ The action completed successfully.
 
 > deactivate S
 The action completed successfully.
+
+> exit
 ```
 
 6 Tecnologia
