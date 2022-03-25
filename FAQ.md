@@ -49,7 +49,7 @@ Nos processos servidor sim, a flag -debug tem de estar obrigatoriamente implemen
 
 Devem imprimir informação que permita perceber exatamente o que está a acontecer, sendo ao vosso critério aquilo que acham que devem imprimir. Notem que o -debug serve para termos uma visão mais específica de todo o processo.
 
-## Vale a pena docomentar o código, usando, por exemplo, javadocs?
+## Vale a pena documentar o código, usando, por exemplo, javadocs?
 
 Sim. Os comentário no código ajudam a perceber, não só o que o código em si, mas também a lógica por trás do mesmo. Visto que estão a programar em java, então javadocs seria uma boa opção.
 
