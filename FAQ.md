@@ -51,7 +51,7 @@ Devem imprimir informação que permita perceber exatamente o que está a aconte
 
 ## Vale a pena documentar o código, usando, por exemplo, javadocs?
 
-Sim. Os comentário no código ajudam a perceber, não só o que o código em si, mas também a lógica por trás do mesmo. Visto que estão a programar em java, então javadocs seria uma boa opção.
+Sim. Os comentários no código ajudam a perceber, não só o código em si, mas também a lógica por trás do mesmo. Visto que estão a programar em java, então javadocs seria uma boa opção.
 
 ## Podem/devem ser adicionados erros ao enum que já existe para fazer verificações de argumentos?
 
