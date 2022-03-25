@@ -49,15 +49,23 @@ Nos processos servidor sim, a flag -debug tem de estar obrigatoriamente implemen
 
 Devem imprimir informação que permita perceber exatamente o que está a acontecer, sendo ao vosso critério aquilo que acham que devem imprimir. Notem que o -debug serve para termos uma visão mais específica de todo o processo.
 
-## Quando um professor fecha as inscrições duma turma, pode depois voltar a abri-las?
-
-Sim, podem. Porém, se a nova capacidade for menor ou igual ao número de inscritos atualmente na turma, deve retornar o erro FULL_CLASS. Caso o novo número de inscrições seja maior que o número atual de inscritos, então o comando deve correr com sucesso.
-
 ## Vale a pena docomentar o código, usando, por exemplo, javadocs?
 
 Sim. Os comentário no código ajudam a perceber, não só o que o código em si, mas também a lógica por trás do mesmo. Visto que estão a programar em java, então javadocs seria uma boa opção.
 
 ## Podem/devem ser adicionados erros ao enum que já existe para fazer verificações de argumentos?
 
-Não vale a pena. As verificações de argumentos incidem sobre a lógica do negócio do projeto, mas esta é uma cadeira de Sistemas Distribuídos, pelo que não vos queremos focados nos problemas que daí advêm. Usem os erros já definidos que se aproximem o mais próximo possível da situação, ou, na falta de melhor, devolvam um erro do gRPC em si (o mais adequado possível).
+Não vale a pena. As verificações de argumentos incidem sobre a lógica do negócio do projeto, mas esta é uma cadeira de Sistemas Distribuídos, pelo que vos queremos focados nos problemas de distribuição do vosso projeto. Usem os erros já definidos que se aproximem o mais próximo possível da situação, ou, na falta de melhor, devolvam um erro do gRPC em si (o mais adequado possível).
+
+## O que deve retornar quando um aluno se tenta inscrever numa turma com as inscrições fechadas?
+
+Deve retornar ENROLLMENTS_ALREADY_CLOSED.
+
+## O que deve retornar quando o professor tentar abrir as inscrições e estas já estiverem abertas?
+
+Deve retornar ENROLLMENTS_ALREADY_OPENED.
+
+## É necessário criar a pasta demo e o guião?
+
+Para já, não é obrigatório. Porém, para a entrega final (entrega 3), sim, a pasta demo e o guião devem constar na entrega.
 
