@@ -69,3 +69,10 @@ Deve retornar ENROLLMENTS_ALREADY_OPENED.
 
 Para já, não é obrigatório. Porém, para a entrega final (entrega 3), sim, a pasta demo e o guião devem constar na entrega.
 
+## Até que horas se pode submeter a entrega?
+
+Até as 23:59h do dia definido para a entrega.
+
+## O que deve acontecer quando um servidor está inativo?
+
+Deve retornar um erro de INACTIVE_SERVER a qualquer pedido vindo do aluno ou professor, inclusive pedidos de atualização (propagate). Apenas o administrador deve conseguir executar os pedidos normalmente.
