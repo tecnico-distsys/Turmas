@@ -71,7 +71,7 @@ Para já, não é obrigatório. Porém, para a entrega final (entrega 3), sim, a
 
 ## Até que horas se pode submeter a entrega?
 
-Até as 23:59h do dia definido para a entrega.
+Até às 23:59h do dia definido para a entrega.
 
 ## O que deve acontecer quando um servidor está inativo?
 
