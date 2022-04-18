@@ -43,7 +43,7 @@ Seguindo o seguinte exemplo: um professor abre uma turma com 20 alunos, fecha a 
 
 ## Devo implementar a flag -debug em todos os processos?
 
-Nos processos servidor sim, a flag -debug tem de estar obrigatoriamente implementada. Nos processo cliente, vai depender da vossa implementação: se o vosso cliente executar várias operações importantes, então sim, tem de estar implementado. Se os vossos processos cliente forem apenas uma interface simples, sem grande lógica, então não será preciso. Porém, se se sentirem mais confortáveis em implementar em ambos os processos, força.
+Para a entrega final (P3), sim, todos os processos devem ter disponível a flag -debug.
 
 ## O que deve aparecer na consola quando a flag -debug está ativa?
 
