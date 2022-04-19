@@ -228,7 +228,7 @@ Um servidor secundário pode ser lançado da seguinte forma:
 5.2 Servidor de nomes
 -------------
 
-O servidor deve ser lançado recebendo como argumentos o endereço e o porto em que ficará à escuta, por exemplo:
+O servidor deve ser lançado sem argumentos e ficará à escuta no porto `5000`, por exemplo:
 
 `$ nameserver localhost 5000`
 
@@ -334,7 +334,6 @@ The action completed successfully.
 6 Tecnologia
 ------------
 
-
 Todos os componentes do projeto têm de ser implementados na linguagem de
 programação [Java](https://docs.oracle.com/javase/specs/).
 
@@ -382,7 +381,6 @@ Se for um dos clientes, pode decidir parar com o erro recebido ou fazer novas te
 7 Resumo
 ------------
 
-
 Em resumo, é necessário implementar:
 
 o servidor, *turmas*;
@@ -400,14 +398,12 @@ Todos os clientes oferecem uma interface-utilizador baseada na linha de comandos
 ------------
 
 8.1 Fotos
- 
 ---------
 
 Cada membro da equipa tem que atualizar o Fénix com uma foto, com qualidade, tirada nos últimos 2 anos, para facilitar a
 identificação e comunicação.
 
 8.2 Identificador de grupo
- 
 --------------------------
 
 O identificador do grupo tem o formato `GXX`, onde `G` representa o campus e `XX` representa o número do grupo de SD
@@ -422,9 +418,7 @@ Esta alteração é importante para a gestão de dependências, para garantir qu
 os módulos desenvolvidos pelo próprio grupo.
 
 8.3 Colaboração
- 
 ---------------
-
 
 O [Git](https://git-scm.com/doc) é um sistema de controlo de versões do código fonte que é uma grande ajuda para o
 trabalho em equipa.
@@ -441,7 +435,6 @@ Cada elemento do grupo deve atualizar o repositório do seu grupo à medida que 
 foram atribuídas.
 
 8.4 Entregas
- 
 ------------
 
 As entregas do projeto serão feitas também através do repositório GitHub.
@@ -452,7 +445,6 @@ Cada grupo tem que marcar o código que representa cada entrega a realizar com u
 da hora limite de entrega.
 
 8.5 Valorização
- 
 ---------------
 
 
@@ -473,9 +465,7 @@ A avaliação da qualidade engloba os seguintes aspetos:
   .
 
 8.6 Instalação e demonstração
- 
 -----------------------------
-
 
 As instruções de instalação e configuração de todo o sistema, de modo a que este possa ser colocado em funcionamento,
 devem ser colocadas no documento `README.md`.
@@ -483,17 +473,11 @@ devem ser colocadas no documento `README.md`.
 Este documento tem de estar localizado na raiz do projeto e tem que ser escrito em formato [*
 MarkDown*](https://guides.github.com/features/mastering-markdown/).
 
-Cada grupo deve preparar também um *guião de demonstração*, com casos de utilização, passo a passo, que demonstram as
-funcionalidades do trabalho.
-
-O guião e ficheiros de dados necessários devem ser incluído na pasta `demo/` na raiz do projeto.
-
-O documento principal deve chamar-se `demo/README.md` e os ficheiros com dados de teste devem ter a extensão `txt`.
+Cada grupo deve preparar também um mini relatório, que não deve exceder as **500** palavras, explicando a sua solução para a fase 3,
+e que não deve repetir informação que já esteja no enunciado. Este documento deve estar na raiz do projeto e deve ter o nome `REPORT.md`
 
 8.7 Discussão
- 
 -------------
-
 
 As notas das várias partes são indicativas e sujeitas a confirmação na discussão final, na qual todo o trabalho
 desenvolvido durante o semestre será tido em conta.
@@ -505,9 +489,7 @@ Todas as discussões e revisões de nota do trabalho devem contar com a particip
 grupo.
 
 8.8 Atualizações
- 
 ----------------
-
 
 Para acompanhar as novidades sobre o projeto, consultar regularmente
 a [página Web dos laboratórios](https://tecnico-distsys.github.io).
