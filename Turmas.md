@@ -230,7 +230,7 @@ Um servidor secundário pode ser lançado da seguinte forma:
 
 O servidor deve ser lançado sem argumentos e ficará à escuta no porto `5000`, por exemplo:
 
-`$ nameserver localhost 5000`
+`$ nameserver`
 
 5.3 Cliente *docente*
 -------------
