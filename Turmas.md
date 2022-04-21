@@ -217,27 +217,27 @@ que identifica se um servidor é ou não o primário.
 
 Na fase 1, o servidor será sempre primário.
 
-Por exemplo, um servidor primário pode ser lançado da seguinte forma (**$** representa a *shell* do sistema operativo):
+Por exemplo, um servidor primário pode ser lançado da seguinte forma a partir da pasta `ClassServer` (**$** representa a *shell* do sistema operativo):
 
-`$ turmas localhost 2001 P`
+`$ mvn exec:java -Dexec.args="localhost 2001 P"`
 
 Um servidor secundário pode ser lançado da seguinte forma:
 
-`$ turmas localhost 2002 S`
+`$ mvn exec:java -Dexec.args="localhost 2002 S"`
 
 5.2 Servidor de nomes
 -------------
 
-O servidor deve ser lançado sem argumentos e ficará à escuta no porto `5000`, por exemplo:
+O servidor de nomes deve ser lançado sem argumentos e ficará à escuta no porto `5000`, podendo ser lançado a partir da pasta `NamingServer` da seguinte forma:
 
-`$ nameserver`
+`$ mvn exec:java`
 
 5.3 Cliente *docente*
 -------------
 
-O cliente docente deve ser lançado sem parâmetros, por exemplo:
+O cliente docente deve ser lançado sem parâmetros, podendo ser lançado a partir da pasta `Professor` com o seguinte comando:
 
-`$ docente`
+`$ mvn exec:java`
 
 Exemplo de uma interação com o cliente docente:
 
@@ -281,9 +281,9 @@ ClassState{
 5.4 Cliente *aluno*
 -----------
 
-O cliente aluno deve ser lançado recebendo como argumento o identificador do aluno e o seu nome, como por exemplo:
+O cliente aluno deve ser lançado recebendo como argumento o identificador do aluno e o seu nome, a partir da pasta `Student` como por exemplo:
 
-`$ aluno aluno0012 Joaquim Freire`
+`$ mvn exec:java -Dexec.args="aluno0012 Joaquim Freire"`
 
 O identificador do aluno deverá ser do tipo `alunoXXXX` em que `XXXX` representa um número de 4 dígitos, ou seja,
 constituído pela string `aluno` e por 4 dígitos.
@@ -306,9 +306,9 @@ ClassState{
 ---------
 
 
-O cliente administrador não necessita de qualquer tipo de argumentos, sendo apenas lançado da seguinte forma:
+O cliente administrador não necessita de qualquer tipo de argumentos, sendo apenas lançado da seguinte forma na pasta `Admin`:
 
-`$ admin_turmas`
+`$ mvn exec:java`
 
 ```
 > deactivate P
