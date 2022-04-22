@@ -67,7 +67,8 @@ Deve retornar ENROLLMENTS_ALREADY_OPENED.
 
 ## É necessário criar a pasta demo e o guião?
 
-Para já, não é obrigatório. Porém, para a entrega final (entrega 3), sim, a pasta demo e o guião devem constar na entrega.
+~~Para já, não é obrigatório. Porém, para a entrega final (entrega 3), sim, a pasta demo e o guião devem constar na entrega.~~
+Não, é apenas necessário escrever um relatório como descrito no enunciado. Não é necessário elaborar um guião de demonstraç
 
 ## Até que horas se pode submeter a entrega?
 
